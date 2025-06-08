@@ -215,7 +215,12 @@ while True:
 
     if count == 4:
         print("gg")
-        cv.putText(img, 'YOU are LOSER', (200, 100), 0, 2, (255, 0,0 ))
+        cv.destroyWindow('2048')
+        img1 = np.zeros((400, 1000, 3), np.uint8)
+        cv.putText(img1, 'YOU are LOSER', (200, 200), 0, 2, (0, 0,255 ), 5)
+        cv.imshow('gameover', img1)
+        cv.waitKey(0)
+        break
     else:
         randx = random.randint(0, 3)
         randy = random.randint(0, 3)
