@@ -1,4 +1,3 @@
-#penis
 import cv2 as cv
 import numpy as np
 from enum import IntFlag, auto
@@ -9,7 +8,7 @@ WIDE = 400
 img = np.zeros((HEIGHT, WIDE, 3), np.uint8)
 img.fill(255)
 
-full = cv.imread('C:/Rabota/PythonSamples/Programming/To_write_smth/Python/2048 memes edition/2048.png') #add your own path to the picture
+full = cv.imread('2048.png') #путь до картиночки
 
 class CellType(IntFlag):
     empty = 0
@@ -90,15 +89,30 @@ tiles[CellType.a1024] = full[:, 1000:1100, :]
 
 import random
 game = [
-    [2, 4, 8, 16],
-    [32, 64, 128, 256],
-    [512, 1024, 0, 2],
-    [2, 0, 4, 2]
+    [0, 0, 4, 4],
+    [0, 0, 4, 4],
+    [0, 0, 0, 0],
+    [0, 0, 4, 0]
 ]
 
 def move(game):
      for stolb in range(4):
             
+            for strok in range(3, 0, -1):
+                if game[strok][stolb] == 0:
+                    game[strok][stolb] = game[strok-1][stolb]
+                    game[strok-1][stolb] = 0
+
+            for strok in range(3):
+                if game[strok+1][stolb] == 0:
+                    game[strok+1][stolb] = game[strok][stolb]
+                    game[strok][stolb] = 0
+
+            for strok in range(3, 0, -1):
+                if game[strok][stolb] == 0:
+                    game[strok][stolb] = game[strok-1][stolb]
+                    game[strok-1][stolb] = 0
+
             for strok in range(3, 0, -1):
                 if game[strok][stolb] == game[strok-1][stolb]:
                     game[strok][stolb] = game[strok][stolb] *2
@@ -111,19 +125,19 @@ def move(game):
                     game[strok+1][stolb] = game[strok][stolb]
                     game[strok][stolb] = 0
 
-            for strok in range(2, 0, -1):
+            for strok in range(3, 0, -1):
                 if game[strok][stolb] == 0:
                     game[strok][stolb] = game[strok-1][stolb]
                     game[strok-1][stolb] = 0
 
             
+            # for strok in range(3, 0, -1):
+            #     if game[strok][stolb] == game[strok-1][stolb]:
+            #         game[strok][stolb] = game[strok][stolb] *2
+            #         game[strok-1][stolb] = 0
+
+
             for strok in range(3, 0, -1):
-                if game[strok][stolb] == game[strok-1][stolb]:
-                    game[strok][stolb] = game[strok][stolb] *2
-                    game[strok-1][stolb] = 0
-
-
-            for strok in range(2, 0, -1):
                 if game[strok][stolb] == 0:
                     game[strok][stolb] = game[strok-1][stolb]
                     game[strok-1][stolb] = 0
@@ -138,7 +152,6 @@ while True:
     command = cv.waitKeyEx(0)
     print('-------------------------------')
     # command = input()
-
     if command == ord('s'):
         move(game)
         
