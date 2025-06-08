@@ -9,7 +9,7 @@ WIDE = 400
 img = np.zeros((HEIGHT, WIDE, 3), np.uint8)
 img.fill(255)
 
-full = cv.imread('C:/Rabota/PythonSamples/Programming/To_write_smth/Python/2048 memes edition/2048.png') #путь до картиночки
+full = cv.imread('C:/Rabota/PythonSamples/Programming/To_write_smth/Python/2048 memes edition/2048.png') #add your own path to the picture
 
 class CellType(IntFlag):
     empty = 0
